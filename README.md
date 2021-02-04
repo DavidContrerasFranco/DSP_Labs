@@ -21,4 +21,4 @@ This lab consisted of:
 - Genrating test signals for different filters
 - Make a FIR filter with the windows method.
 - Use a Chebyshev filter FIR to eliminate some frequency components.
-- Filter the test signals with IIR filters, created with the methods: linear trasnformation and impulse invariant.
+- Filter the test signals with IIR filters, created with the methods: bilinear trasnformation and impulse invariant.
