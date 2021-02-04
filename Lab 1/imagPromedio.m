@@ -9,22 +9,23 @@
 % PSNR of each of the output images from ImPromOutput.
 
 function [ImPromOutput, PSNRvec] = imagPromedio(Im, M, MuRuido, SigmaRuido)
+    ImPromOutput = [];
+    PSNRvec = [];
+    
     [rows, columns, numberOfColorChannels] = size(Im);
     
-    ImPromOutput = zeros(rows, columns*length(M), numberOfColorChannels);
-    PSNRvec = zeros(1, length(M));
-    
-    for k = 1:length(M)
-        promImg = imnoise(Im,'gaussian', MuRuido, SigmaRuido);
-        
-        for h = 1:(M(k) - 1)
-            promImg = promImg + imnoise(Im,'gaussian', MuRuido, SigmaRuido);
+    for k = M
+        J = noised_images (Im, k, MuRuido, SigmaRuido);
+        promImg = J(1:rows, 1:columns, 1:numberOfColorChannels);
+
+        for h = 1:(k - 1)
+            promImg = promImg + J(1:rows, (1:columns) + columns*h, 1:numberOfColorChannels);
         end
         
-        promImg = promImg./M(k);
+        promImg = promImg./k;
         peaksnr = psnr(promImg, Im);
         
-        ImPromOutput(:, (1:columns) + (k - 1)*columns, :) = promImg;
-        PSNRvec(k) = peaksnr;
+        ImPromOutput = [ImPromOutput promImg];
+        PSNRvec = [PSNRvec peaksnr];
     end
 end
