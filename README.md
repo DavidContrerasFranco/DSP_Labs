@@ -1,4 +1,4 @@
-# DSP_Labs
+# DSP Labs
 Labs for the course Digital Signal Processing taken in Pontificia Universidad Javeriana Cali during the 2020-1 Semester. Each folder contains the corresponding files in Matlab for the lab and the report in Spanish (language in which the course was taken). Thess Labs were solved in collaboration between David Contreras Franco and Alejandro Ayala Gil.
 
 ## Lab 1
